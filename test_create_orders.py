@@ -1,0 +1,31 @@
+# Сатин Александр, 44-когорта - Финальный проект.Инженер по тестированию плюс.
+
+import sender_stand_request
+import data
+
+# Эта функция создает заказ и возвращает track
+def create_orders_and_get_track():
+# В переменную orders_body берется тело запроса из data.ru    
+    user_body = data.orders_body.copy()
+# В переменную response сохраняется ответ при создании нового заказа
+    response = sender_stand_request.post_new_orders(user_body)
+     # Проверяем, что заказ создался 
+    assert response.status_code == 201
+# В переменную track сохраняется track пришедший в ответе
+    track = response.json()["track"]
+    return track
+
+
+# Получаем трек и сохраняем в переменную
+track = create_orders_and_get_track()
+
+
+def test_get_order_by_track():
+# Создаём заказ и получаем его трек
+    track = create_orders_and_get_track()
+
+# Делаем GET по треку
+    response = sender_stand_request.get_orders_track(track)
+
+# Проверяем, что код ответа = 200
+    assert response.status_code == 200
