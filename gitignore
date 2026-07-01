@@ -1,7 +1,7 @@
-.pytest/
+.pytest
 venv/
-.idea/
-.pytest_cache/
-__pycache__/
+.idea
+.pytest_cache
+__pycache__
 *.pyc
 .DS_Store
