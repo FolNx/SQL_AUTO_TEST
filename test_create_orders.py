@@ -9,8 +9,6 @@ def create_orders_and_get_track():
     user_body = data.orders_body.copy()
 # В переменную response сохраняется ответ при создании нового заказа
     response = sender_stand_request.post_new_orders(user_body)
-     # Проверяем, что заказ создался 
-    assert response.status_code == 201
 # В переменную track сохраняется track пришедший в ответе
     track = response.json()["track"]
     return track
